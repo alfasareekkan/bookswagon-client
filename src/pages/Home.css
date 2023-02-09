@@ -1,0 +1,13 @@
+.card-carousel{
+    margin-left: 6rem;
+}
+
+.card-carousel li{
+    width: 175px !important; 
+}
+.product-head{
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
