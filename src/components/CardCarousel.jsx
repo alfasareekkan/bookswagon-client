@@ -5,7 +5,7 @@ import Cards from './Cards';
 
 const responsive = {
   superLargeDesktop: {
-    // the naming can be any, depends on you.
+    // brake points of card carousel.
     breakpoint: { max: 4000, min: 3000 },
     items: 6,
   },
@@ -23,18 +23,17 @@ const responsive = {
   },
 };
 
-function CardCarousel() {
+function CardCarousel({ latestProducts }) {
   return (
     <div className="card-carousel">
-      <Carousel responsive={responsive}>
-        <div><Cards /></div>
-        <div><Cards /></div>
-        <div><Cards /></div>
-        <div><Cards /></div>
-        <div><Cards /></div>
-        <div><Cards /></div>
-        <div><Cards /></div>
-        <div><Cards /></div>
+          <Carousel responsive={responsive}>
+              {
+                  latestProducts.map((product) => (
+        <div><Cards product={product} /></div>
+                      
+                  ))
+              }
+
       </Carousel>
     </div>
   );

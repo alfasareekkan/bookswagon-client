@@ -1,0 +1,22 @@
+    .flex-column-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.category-list{
+    height: 3rem;
+    padding-left: 1rem;
+    margin-left: 2rem;
+    transition: "1s";
+    display: flex;
+    align-items: center;
+
+}
+.category-list:hover{
+    background-color: #dde2e7;
+    border-left:2px solid red ;
+}
+/* .{
+
+} */

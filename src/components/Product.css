@@ -1,0 +1,34 @@
+.column-product{
+    width: 100%;
+    border-top: 1px solid #ccc;
+    height: 12rem;
+    display: flex;
+    justify-content: space-evenly;
+
+   
+}
+.column-product img{
+    padding: 1rem;
+}
+.product-details-1{
+    margin-top: 0.5rem;
+}
+.product-details-1{
+    font-size: 0.8rem;
+
+}
+.product-details-2{
+ display: flex;
+}
+ 
+
+.product-details-2 div{
+    display: flex;
+    flex-direction: column;
+}
+
+.product-details-3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
