@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import DropDowns from '../components/Elements/DropDown';
 import CategoryProduct from '../components/CategoryProduct';
 import { useGetProductByCategoryMutation, useFilterMutation, usePaginationMutation } from '../features/product/productApiSlice';
-import { insertAllProducts } from '../features/product/productSlice';
+import { insertAllProducts,updateProducts } from '../features/product/productSlice';
 import Loader from '../components/Elements/Loader';
 
 function CategoryPage() {
@@ -44,8 +44,8 @@ function CategoryPage() {
     setPaginate((state) => state + 1);
     const actualPageCount = paginate + 1;
     try {
-      const data = await pagination({ id: categoryId, paginate: actualPageCount })
-      console.log(data);
+      const data = await pagination({ id: categoryId, paginate: actualPageCount });
+       dispatch(updateProducts(data))
       
     } catch (error) {
       
@@ -62,6 +62,7 @@ function CategoryPage() {
       <div className="navigation">
         <h5>{ products[0]?.category}</h5>
         <div>
+          {/* filter dropdown */}
           <DropDowns>
             <Dropdown.Item onClick={() => filterAtoZ('AtoZ')}>Title A to Z</Dropdown.Item>
             <Dropdown.Item onClick={() => filterAtoZ('ZtoA')}>Title z to A</Dropdown.Item>
@@ -71,6 +72,7 @@ function CategoryPage() {
         </div>
 
       </div>
+      {/* Listing products */}
       <div className="category-products">
         {
           products?.map((product) => (
@@ -81,6 +83,7 @@ function CategoryPage() {
           ))
         }
       </div>
+      {/* pagination button */}
       <div className="load-more">
       <Button variant="danger" onClick={getProductByPagination}>Load More</Button>
     

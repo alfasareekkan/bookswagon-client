@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const productSlice = createSlice({
-    name: 'category',
+    name: 'product',
     initialState: {
         products: [],
     },
@@ -9,12 +9,17 @@ const productSlice = createSlice({
         //inserting all products to redux state
         insertAllProducts: (state, action) => {
             state.products = [...action.payload];
+        },
+        updateProducts: (state, action) => { 
+            console.log(state.products);
+            
+            state.products = [...state.products,...action.payload.data];
         }
     }
 })
 
 
 
-export const { insertAllProducts } = productSlice.actions;
+export const { insertAllProducts,updateProducts } = productSlice.actions;
 
 export default productSlice.reducer;
