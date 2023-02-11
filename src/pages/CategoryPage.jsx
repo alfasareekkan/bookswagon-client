@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 
 import DropDowns from '../components/Elements/DropDown';
 import CategoryProduct from '../components/CategoryProduct';
-import { useGetProductByCategoryMutation, useFilterMutation } from '../features/product/productApiSlice';
+import { useGetProductByCategoryMutation, useFilterMutation, usePaginationMutation } from '../features/product/productApiSlice';
 import { insertAllProducts } from '../features/product/productSlice';
 import Loader from '../components/Elements/Loader';
 
@@ -15,9 +15,10 @@ function CategoryPage() {
   const { categoryId } = useParams();
   const [getProductByCategory, { isLoading }] = useGetProductByCategoryMutation();
   const [filter] = useFilterMutation();
+  const [pagination,] = usePaginationMutation();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.products);
-  const [paginate, setPaginate] = useState(0);
+  const [paginate, setPaginate] = useState(1);
 
   // getting product by category from api
   async function getProductByCategories() {
@@ -28,6 +29,8 @@ function CategoryPage() {
 
     }
   }
+
+  //filtering products by user aspects
   const filterAtoZ = async (type) => {
     try {
       const data = await filter({ id: categoryId, type }).unwrap();
@@ -36,6 +39,18 @@ function CategoryPage() {
 
     }
   };
+  //pagination
+  const getProductByPagination = async (c) => {
+    setPaginate((state) => state + 1);
+    const actualPageCount = paginate + 1;
+    try {
+      const data = await pagination({ id: categoryId, paginate: actualPageCount })
+      console.log(data);
+      
+    } catch (error) {
+      
+    }
+  }
 
   useEffect(() => {
     getProductByCategories();
@@ -67,7 +82,7 @@ function CategoryPage() {
         }
       </div>
       <div className="load-more">
-      <Button variant="danger" onClick={pagination}>Load More</Button>
+      <Button variant="danger" onClick={getProductByPagination}>Load More</Button>
     
       </div>
       <div />

@@ -24,7 +24,15 @@ const productApiSlice = productApi.injectEndpoints({
         method: 'GET',
       }),
     }),
+    pagination: builder.mutation({
+      query: (credentials) => ({
+        url: `paginate-products/${credentials.id}/${credentials.paginate}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
-
-export const { useGetLatestProductMutation, useGetProductByCategoryMutation, useFilterMutation } = productApiSlice;
+// exporting mutations
+export const { useGetLatestProductMutation, useGetProductByCategoryMutation,
+  useFilterMutation, usePaginationMutation,
+} = productApiSlice;
